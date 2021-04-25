@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+   <link href="{{ url_for('static', filename='style3.css') }}" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+ 
+</head>
+<body style="background:linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url({{ url_for('static',filename='assets/img/fcrit.jpg')}});">
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="text-primary site-heading-upper mb-3"><strong>FCRIT ONLINE CANTEEN</strong><br></span><span class="site-heading-lower"> Cart<br><br></span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#">fcrit canteen</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('home')}}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('about')}}">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('products1')}}">Products</a></li>
+                     <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{url_for('indianmenu')}}"> Snacks</a>
+                      <a class="dropdown-item" href="{{url_for('menu')}}">Chinese</a>
+                    
+                      <a class="dropdown-item" href="{{url_for('lunchbev')}}">Lunch and Beverages</a>
+                    </div>
+                     <li class="nav-item"><a class="nav-link" href="{{url_for('store')}}">Store</a></li>
+                     <li class="nav-item"><a class="nav-link" href="{{url_for('products')}}">
+                      <ion-icon size="large" name="cart-outline"></ion-icon><span>{{ session['all_total_quantity'] }}</span></a></li>
+                </ul>
+        </div>
+        </div>
+        <div class="navbar-nav" >
+                <li class="nav-item"> <a href="{{ url_for('pro') }}"><i class="fas fa-user-circle"></i>Profile </a></li>
+                <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+              </div>
+    </nav>
+
+   
+<div >
+  <h1 style="color:white;margin-left: 5% ">Your Order</h1>
+<!--                                                                                 -->
+<div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <div style="color: black; margin-left: 5%;margin-right: 5%;margin-bottom: 5%">
+    <div  style="color: white; font-size: 1.7em;">Shopping Cart</div>    
+    {% if 'cart_item' in session %}
+      <div style="max-width:100%;">
+      <table class="tbl-cart" >
+      <tbody>
+        <tr>
+          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;padding:15px 4px 15px; ">Name</th>
+          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;">Code</th>
+          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;" width="5%">Quantity</th>
+          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="15%">Unit Price</th>
+          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;" width="15%">Price</th>
+          <th style="text-align:center;font-size: 0.9em;background-color:#e3a571 ;" width="5%">Remove</th>
+        </tr>
+        {% for key, val in session['cart_item'].items() %}
+          {% set quantity = session['cart_item'][key]['quantity'] %}
+          {% set price = session['cart_item'][key]['price'] %}
+          {% set item_price = session['cart_item'][key]['total_price'] %}         
+          <tr >
+            <td style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;padding:15px 4px 15px; ">{{ session['cart_item'][key]['name'] }}</td>
+            <td style="text-align:center;font-size: 0.9em;background-color: #eee; ">{{ session['cart_item'][key]['code'] }}</td>
+            <td style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;">{{ quantity }}</td>
+            <td  style="text-align:center; ;font-size: 0.9em;background-color: #eee;">&#8377; {{ price }}</td>
+            <td  style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;">&#8377; {{ item_price }}</td>
+            <td style="text-align:center;font-size: 0.9em;background-color: #eee;">
+              <a href="{{ url_for('.delete_product', code=session['cart_item'][key]['code']) }}" class="btnRemoveAction">
+               <ion-icon style="color: black;" name="trash-sharp"></ion-icon>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="2" align="right" style="background-color: #e3e3e3;padding: 15px">Total:</td>
+          <td align="right"style="background-color: #eee;text-align:center; ">{{ session['all_total_quantity'] }}</td>
+          <td align="right" colspan="2"style="background-color: #e3e3e3;text-align:center;"><strong>&#8377; {{ session['all_total_price'] }}</strong></td>
+          <td style="background-color: #e3e3e3;"></td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+    {% else: %}
+      <div class="no-records" style="color: white">Your Cart is Empty</div>
+    {% endif %}
+  </div>
+<!--
+  <div id="product-grid">
+    <div class="txt-heading" style="color: white; font-size: 1.7em;">Products</div>
+
+    {% for product in products %}
+
+      <div class="product-item" >
+        <form method="post" action="/cart/add">
+          
+          <div class="product-tile-footer">
+            <div class="product-title" style="color: black;">{{ product.name }}</div>
+            <div class="product-price"style="color: black;">&#8377; {{ product.price }}</div>
+            <div class="cart-action">
+              <input type="hidden" name="code" value="{{ product.code }}"/>
+              <input type="text" class="product-quantity" name="quantity" value="1" size="2" />
+              <input type="submit" value="Add to Cart" class="btnAddAction" />
+            </div>
+          </div>
+        </form>
+      </div>
+
+    {% endfor %}
+  
+  </div>
+
+
+-->
+
+
+<!--                                                                                 -->
+
+<a  href="{{ url_for('payment') }}" class="btnAddAction" style="margin-bottom: 40px;margin-right:5%;margin-top:1%;margin-bottom: 10%  ">Proceed to Payment</a>
+</div>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+<script src="{{ url_for('static',filename='assets/js/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/current-day.js')}}"></script>
+   
+</body>
+</html>

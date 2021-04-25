@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>UserProfile</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+   <link href="{{ url_for('static', filename='style3.css') }}" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+ 
+</head>
+<body style="background:linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url({{ url_for('static',filename='assets/img/fcrit.jpg')}});">
+    <h1 class="text-center text-white d-none d-lg-block site-heading"><span class="text-primary site-heading-upper mb-3"><strong>FCRIT ONLINE CANTEEN</strong><br></span><span class="site-heading-lower"> User Profile<br><br></span></h1>
+    <nav class="navbar navbar-light navbar-expand-lg bg-dark py-lg-4" id="mainNav">
+        <div class="container"><a class="navbar-brand text-uppercase d-lg-none text-expanded" href="#">fcrit canteen</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('home')}}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('about')}}">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('products1')}}">Products</a></li>
+                     <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{url_for('indianmenu')}}"> Snacks</a>
+                      <a class="dropdown-item" href="{{url_for('menu')}}">Chinese</a>
+                    
+                      <a class="dropdown-item" href="{{url_for('lunchbev')}}">Lunch and Beverages</a>
+                    </div>
+                     <li class="nav-item"><a class="nav-link" href="{{url_for('store')}}">Store</a></li>
+                     <li class="nav-item"><a class="nav-link" href="{{url_for('products')}}">
+                      <ion-icon size="large" name="cart-outline"></ion-icon><span>{{ session['all_total_quantity'] }}</span></a></li>
+                </ul>
+        </div>
+        </div>
+        <div class="navbar-nav" >
+                <li class="nav-item"> <a href="{{ url_for('pro') }}"><i class="fas fa-user-circle"></i>Profile </a></li>
+                <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+              </div>
+    </nav>
+
+   
+  
+  <h1 ></h1>
+    <h2 style="color:white;margin-left: 5%; "> Username: {{username}} </h2>   
+<!--                                                                                 -->
+  <div>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <div  style="color: black; margin-left: 5%;margin-right: 5%;">
+    <div  style="color: white; font-size: 1.7em;">Order History</div>    
+    {% for tmp3 in data3 %}
+    {% with tmp4=tmp3.dt %}
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#st{{tmp3.row_num}}">{{tmp3.dt}}</a>
+          </h4>
+        </div>        
+        {% for tmp2 in data2%}
+          {% with tmp=tmp2.time%}  
+            {% if tmp4==tmp2.dt %}
+            <div class="panel-collapse collapse" id="st{{tmp3.row_num}}"> 
+              <div class="panel-group" >
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" href="#ss{{tmp2.row_num}}" style="color:white;margin-left: 5%">{{tmp2.tt}}</a>
+                    </h4>
+                  </div>
+                  <div  id="ss{{tmp2.row_num}}" class="panel-collapse collapse" style="color: black; margin-left: 5%;margin-right: 5%;margin-bottom: 2%">
+                    <table class="tbl-cart" style="max-width:100%;">
+                      <tbody>
+                        <tr >
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;padding: 15px 4px 15px;"width="13%" >Name</th> 
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="4%">Qty</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;" width="13%">Unit Price</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="16%">Price</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;" width="10%">Time</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#e3a571 ;" width="5%">Status</th>
+                        </tr>
+                        {% for item in data %} 
+                          {% if tmp == item.time %}
+
+                          <tr >
+                            <td style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;padding:15px 4px 15px;"width="13%">{{ item.name }}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee; "width="4%">{{ item.quantity }}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;"width="13%">&#8377; {{ item.unit_price }}</td>
+                            <td  style="text-align:center; font-size: 0.9em;background-color: #eee;"width="16%">&#8377; {{item.price }}</td>
+                            <td  style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;"width="10%"> {{ item.time}}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee;"width="5%">{{item.state}}</td>
+                          </tr>                 
+                          {% endif %}             
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}     
+          {% endwith %}
+        {%endfor%}
+      </div>
+    </div>
+    {% endwith %}
+    {%endfor%}
+  </div>    
+        
+  <div style="margin-bottom: 10%"></div>
+        
+
+
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+<script src="{{ url_for('static',filename='assets/js/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for('static',filename='assets/js/current-day.js')}}"></script>
+   
+</body>
+</html>

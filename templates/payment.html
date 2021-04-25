@@ -1,0 +1,290 @@
+<!doctype html>
+                        <html>
+                            <head>
+                                <meta charset='utf-8'>
+                                <meta name='viewport' content='width=device-width, initial-scale=1'>
+                                <title>Payment</title>
+                                <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+                                <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+                                <style>body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    font-size: 0.8rem
+}
+
+.card {
+        background-color: #d88e51;
+
+    max-width: 1000px;
+    margin: 2vh
+}
+
+.card-top {
+    padding: 0.7rem 5rem
+}
+
+.card-top a {
+    float: left;
+    margin-top: 0.7rem
+}
+
+#logo {
+    font-family: 'Dancing Script';
+    font-weight: bold;
+    font-size: 1.6rem
+}
+
+.card-body {
+    padding: 0 5rem 5rem 5rem;
+    background-color: #e3e3e3;
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+@media(max-width:768px) {
+    .card-body {
+        padding: 0 1rem 1rem 1rem;
+
+        background-size: cover;
+        background-repeat: no-repeat
+    }
+
+    .card-top {
+        padding: 0.7rem 1rem
+    }
+}
+
+.row {
+    margin: 0
+}
+
+.upper {
+    padding: 1rem 0;
+    justify-content: space-evenly
+}
+
+#three {
+    border-radius: 1rem;
+    width: 22px;
+    height: 22px;
+    margin-right: 3px;
+    border: 1px solid blue;
+    text-align: center;
+    display: inline-block
+}
+
+#payment {
+    margin: 0;
+    color: blue
+}
+
+.icons {
+    margin-left: auto
+}
+
+form span {
+    color: rgb(179, 179, 179)
+}
+
+form {
+    padding: 2vh 0
+}
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247)
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent
+}
+
+.header {
+    font-size: 1.5rem
+}
+
+.left {
+    margin-top: 30px;
+    background-color: #eee;
+    padding: 2vh
+}
+
+.left img {
+    width: 2rem
+}
+
+.left .col-4 {
+    padding-left: 0
+}
+
+.right .item {
+    padding: 0.3rem 0
+}
+
+.right {
+    margin-top: 30px;
+    background-color: #eee;
+    padding: 2vh
+}
+
+.col-8 {
+    padding: 0 1vh
+}
+
+.lower {
+    line-height: 2
+}
+.bottom-box{
+  text-align:left;
+  margin-left: 10px;
+}
+.payment-option-btn{
+    color:#fff;
+    margin: 5px 30px;
+    height: 30px;
+    width: 290px;
+    background-color:orange;
+    border: none;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: rgb(23, 4, 189);
+    border-color: rgb(23, 4, 189);
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    margin: 4vh 0 1.5vh 0;
+    padding: 1.5vh;
+    border-radius: 0
+}
+
+.btn:focus {
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none
+}
+
+.btn:hover {
+    color: white
+}
+
+a {
+    color: black
+}
+
+a:hover {
+    color: black;
+    text-decoration: none
+}
+
+input[type=checkbox] {
+    width: unset;
+    margin-bottom: unset
+}
+
+#cvv {
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.575), rgba(255, 255, 255, 0.541)), url("https://img.icons8.com/material-outlined/24/000000/help.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center
+}
+
+#cvv:hover {}</style>
+                                <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+                                <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
+                                <script type='text/javascript'></script>
+                            </head><body oncontextmenu='return false' class='snippet-body' style="background:linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url({{ url_for('static',filename='assets/img/fcrit.jpg')}});">
+                           
+                            <div class="card">
+    <div class="card-top border-bottom text-center"> <a href="{{ url_for('.products') }}"> Back to shop</a> </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="left border">
+                    <div class="row"> <span class="header">Card Details</span>
+                        <div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/maestro.png" /> </div>
+                    </div>
+                    <form> <span>Cardholder's name:</span> <input placeholder="Card Name"> <span>Card Number:</span> <input placeholder="Card Number">
+                        <div class="row">
+                            <div class="col-4"><span>Expiry date:</span> <input placeholder="YY/MM"> </div>
+                            <div class="col-4"><span>CVV:</span> <input id="cvv"> </div>
+                        </div> <input type="checkbox" id="save_card" class="align-left"> <label for="save_card">Save card details to wallet</label>
+                        <div class="bottom-box">
+                        <br> <button type="button" class= "payment-option-btn" style="max-width: 70%;">Pay with Netbanking</button><br>
+                        <br><button type="button" class= "payment-option-btn" style="max-width: 70%;">Pay with PayPal</button><br>
+                        <br> <button type="button" class= "payment-option-btn" style="max-width: 70%;">Pay with Gpay</button><br>
+                      </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="right border">
+                    <div class="header">Order Summary</div>
+                    <table  style="max-width: 100%;">
+                        <div id="shopping-cart" style="color: black; ">
+    {% if 'cart_item' in session %}
+      <tbody >
+        <tr >
+          <th style="text-align:center;background-color:#d88e51 ;padding: 15px 4px 15px">Name</th>
+          <th style="text-align:center;background-color:#d69f70 ;" width="5%">Quantity</th>
+          <th style="text-align:center;background-color:#d88e51 ;" width="10%">Unit Price</th>
+          <th style="text-align:center;background-color:#d69f70 ;" width="10%">Price</th>
+        </tr>
+        {% for key, val in session['cart_item'].items() %}
+          {% set quantity = session['cart_item'][key]['quantity'] %}
+          {% set price = session['cart_item'][key]['price'] %}
+          {% set item_price = session['cart_item'][key]['total_price'] %}         
+          <tr >
+            <td style="text-align:center;background-color: #e3e3e3; ">{{ session['cart_item'][key]['name'] }}</td>
+            <td style="text-align:center;background-color: #eee;">{{ quantity }}</td>
+            <td  style="text-align:center; background-color: #e3e3e3;padding: 10px 8px 10px">Rs.{{ price }}</td>
+            <td  style="text-align:center;background-color: #eee;">Rs.{{ item_price }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+   
+
+                    <hr>
+                    <div class="row lower">
+                        <div class="col text-left">Subtotal</div>
+                        <div class="col text-right">Rs.{{session['all_total_price'] }}</div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left">Taxes</div>
+                        <div class="col text-right">Free</div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left"><b>Total to pay</b></div>
+                        <div class="col text-right"><b>Rs.{{session['all_total_price'] }}</b></div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left"><a href="#"><u>Add promo code</u></a></div>
+                    </div> <a href="{{url_for('.addtodb')}}" style="color: white;"><button class="btn">Place Order</button></a>
+                    <p class="text-muted text-center">Enjoy Your Food</p>
+                    {% else: %}
+                <div class="no-records" style="color: black">Your Cart is Empty</div>
+              {% endif %}
+          </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div> </div>
+</div>
+                            </body>
+                        </html>

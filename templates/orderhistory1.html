@@ -1,0 +1,114 @@
+{% extends 'layout4.html' %}
+
+{% block title %}Employee{% endblock %}
+
+{% block content %}
+<div  style="color: black; margin-left: 5%;margin-right: 5%;">
+
+<p style="color: white;margin-top: 3%;font-size: 2em;">Welcome back, {{username}} !</p>
+<h2 style="color: white;margin-top: 2%; ">Total Order History</h2>
+<br>
+<!--                                                                                 
+ <div class='container'>
+  <h1 style=color:black;>Order History</h1>
+
+  <table class="table table-hover" style="background-color: white;max-width:100%;">
+    <thead>
+      <tr>
+        <th style=color:black;>Customer</th>
+        <th style=color:black;>Item</th>
+         <th style=color:black;>Code</th>
+        <th style=color:black;>Quantity</th>
+         <th style=color:black;>Unit Price</th>
+          <th style=color:black;>Price</th>
+        <th style=color:black;>Time</th>
+        <th style=color:black;>Status</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td style=color:black;>{{item[0]}}</td>
+            <td style=color:black;>{{item[1]}}</td>
+            <td style=color:black;>{{item[2]}}</td>
+            <td style=color:black;>{{item[3]|round|int}}</td>
+            <td style=color:black;>Rs.{{item[4]}}/-</td>
+            <td style=color:black;>Rs.{{item[5]}}/-</td>
+            <td style=color:black;>{{item[6]}}</td>
+            <td style=color:black;>{{item[7]}}</td>
+
+           
+
+        </tr>
+        {% endfor %}   
+    </tbody>
+  </table>
+ </div> 
+-->
+  {% for tmp3 in data3 %}
+    {% with tmp4=tmp3.dt %}
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#st{{tmp3.row_num}}">{{tmp3.dt}}</a>
+          </h4>
+        </div>        
+        {% for tmp2 in data2 %}
+          {% with tmp=tmp2.time %}  
+            {% if tmp4==tmp2.dt %}
+            <div class="panel-collapse collapse" id="st{{tmp3.row_num}}"> 
+              <div class="panel-group" >
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" href="#ss{{tmp2.row_num}}" style="color:white;margin-left: 5%">{{tmp2.tt}}</a>
+                    </h4>
+                  </div>
+                  <div  id="ss{{tmp2.row_num}}" class="panel-collapse collapse" style="color: black; margin-left: 5%;margin-right: 5%;margin-bottom: 2%">
+                    <table class="tbl-cart" style="max-width:100%;">
+                      <tbody>
+                        <tr >
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;padding: 15px 4px 15px;"width="13%" >Customer Name</th> 
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;padding: 15px 4px 15px;"width="13%" >Item</th> 
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="4%">Code</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="4%">Qty</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;" width="13%">Unit Price</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="16%">Price</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;" width="10%">Time</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#e3a571 ;" width="5%">Status</th>
+                        </tr>
+                        {% for item in data %} 
+                          {% if tmp == item[6] %}
+
+                          <tr >
+                            <td style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;padding:15px 4px 15px;"width="13%">{{ item[0] }}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee; "width="13%">{{ item[1] }}
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee; "width="4%">{{ item[2] }}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee; "width="4%">{{ item[3] }}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;"width="13%">&#8377; {{ item[4] }}</td>
+                            <td  style="text-align:center; font-size: 0.9em;background-color: #eee;"width="16%">&#8377; {{item[5]}}</td>
+                            <td  style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;"width="10%"> {{ item[6]}}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee;"width="5%">{{item[7]}}</td>
+                          </tr>                 
+                          {% endif %}                  
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}     
+          {% endwith %}
+        {%endfor%}
+      </div>
+    </div>
+    {% endwith %}
+    {%endfor%}
+  </div>    
+
+  
+{% endblock %}

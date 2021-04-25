@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Canteen Menu (Indian)</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i">
+    <link rel="stylesheet" href="{{ url_for('static',filename='assets/css/untitled.css')}}">
+		<style>
+			.GFG {
+				background-color: white;
+				border: 2px solid black;
+				color: green;
+				padding: 5px 10px;
+				text-align: center;
+				display: inline-block;
+				font-size: 20px;
+				margin: 10px 30px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body class="loggedin"class="text-center" style="background: linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url({{ url_for('static',filename='assets/img/fcrit.jpg')}}) center / auto;">
+
+		<nav class="navtop">
+			<div>
+				<h1>Indian Menu Update</h1>
+                <a href="{{ url_for('home2') }}"><i class="fas fa-home"></i>Home</a>
+				<a href="{{ url_for('profile') }}"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="{{ url_for('logout2') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+			</div>
+		</nav>
+		<div>
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>

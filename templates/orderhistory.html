@@ -1,0 +1,74 @@
+{% extends 'layout5.html' %}
+
+{% block title %}ORDERS{% endblock %}
+
+{% block content %}
+    <div  style="color: black; margin-left: 5%;margin-right: 5%;">
+
+<h2 style="color: white;margin-top: 2%; ">Total Order History</h2>
+<br>
+{% for tmp3 in data3 %}
+    {% with tmp4=tmp3.dt %}
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#st{{tmp3.row_num}}">{{tmp3.dt}}</a>
+          </h4>
+        </div>        
+        {% for tmp2 in data2 %}
+          {% with tmp=tmp2.time %}  
+            {% if tmp4==tmp2.dt %}
+            <div class="panel-collapse collapse" id="st{{tmp3.row_num}}"> 
+              <div class="panel-group" >
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" href="#ss{{tmp2.row_num}}" style="color:white;margin-left: 5%">{{tmp2.tt}}</a>
+                    </h4>
+                  </div>
+                  <div  id="ss{{tmp2.row_num}}" class="panel-collapse collapse" style="color: black; margin-left: 5%;margin-right: 5%;margin-bottom: 2%">
+                    <table class="tbl-cart" style="max-width:100%;">
+                      <tbody>
+                        <tr >
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;padding: 15px 4px 15px;"width="13%" >Customer Name</th> 
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;padding: 15px 4px 15px;"width="13%" >Item</th> 
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="4%">Code</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="4%">Qty</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;" width="13%">Unit Price</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d69f70 ;" width="16%">Price</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#d88e51 ;" width="10%">Time</th>
+                          <th style="text-align:center;font-size: 0.9em;background-color:#e3a571 ;" width="5%">Status</th>
+                        </tr>
+                        {% for item in data %} 
+                          {% if tmp == item[6] %}
+
+                          <tr >
+                            <td style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;padding:15px 4px 15px;"width="13%">{{ item[0] }}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee; "width="13%">{{ item[1] }}
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee; "width="4%">{{ item[2] }}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee; "width="4%">{{ item[3] }}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;"width="13%">&#8377; {{ item[4] }}</td>
+                            <td  style="text-align:center; font-size: 0.9em;background-color: #eee;"width="16%">&#8377; {{item[5]}}</td>
+                            <td  style="text-align:center;font-size: 0.9em;background-color: #e3e3e3;"width="10%"> {{ item[6]}}</td>
+                            <td style="text-align:center;font-size: 0.9em;background-color: #eee;"width="5%">{{item[7]}}</td>
+                          </tr>                 
+                          {% endif %}                  
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}     
+          {% endwith %}
+        {%endfor%}
+      </div>
+    </div>
+    {% endwith %}
+    {%endfor%}
+  </div>    
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'layout5.html' %}
+
+{% block title %}ORDERS SUMMARY{% endblock %}
+
+{% block content %}
+    <section class="page-section about-heading">
+        <div class="container">
+
+  
+  
+  
+
+  <div class='container'>
+  <h1 style="color:white;">Weekly Summary</h1>
+<!--                                                                                 -->
+  <table class="table table-hover" style="background-color: white;">
+    <thead>
+      <tr>
+        <th style=color:black;>Year</th>
+        <th style=color:black;>Month</th>
+        <th style=color:black;>Week</th>
+        <th style=color:black;>Total Income</th>
+         
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td style=color:black;>{{item[0]}}</td>
+            <td style=color:black;>{{item[1]}}</td>
+            <td style=color:black;>{{item[2]}}</td>
+            <td style=color:black;>Rs.{{item[3]}}/-</td>
+            
+          
+        </tr>
+        {% endfor %}   
+    </tbody>
+  </table>
+ </div> 
+
+{% endblock %}

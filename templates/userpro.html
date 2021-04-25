@@ -1,0 +1,43 @@
+{% extends 'userlay.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h1 style="color: white";>Profile Page</h1>
+<div style="color: white";>
+    <p>Your account details are below:</p>
+   
+    <h2> Username: {{username}} </h2>   
+<div class='container'>
+  <h1 style=color:white;>Order History</h1>
+<!--                                                                                 -->
+  <table class="table table-hover" cellpadding="10" cellspacing="1">
+    <thead>
+      <tr>
+        
+        <th style=color:white;width="5%">Item Name</th>
+        
+        <th style=color:white; width="5%">Quantity</th>
+        <th style=color:white; width="5%">Unit Price</th>
+        <th style=color:white;width="5%">Price</th>
+        <th style=color:white;width="5%">Time</th>
+        <th style=color:white;width="5%">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            
+            <td style=color:white;>{{item.name}}</td>
+            <td style=color:white;>{{item.quantity}}</td>
+            <td style=color:white;>Rs.{{item.unit_price}}/-</td>
+            <td style=color:white;>Rs.{{item.price}}/-</td>
+            <td style=color:white;>{{item.time}}</td>
+            <td style=color:white;>{{item.state}}</td>
+        </tr>
+        {% endfor %}   
+    </tbody>
+  </table>
+ </div> 
+</div>
+{% endblock %}

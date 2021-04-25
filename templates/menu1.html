@@ -1,0 +1,41 @@
+{% extends 'layout1.html' %}
+
+{% block title %}Chinese{% endblock %}
+
+{% block content %}
+    <div class="content">
+    <section class="page-section about-heading">
+        <div class="container">
+  <h1 style=color:white;>Menu</h1>
+  <h3 style=color:white;>Chinese</h3>  
+  <a class="nav-item nav-link" id="white"href="/menudb/addchinese">Add Item</a>
+  <a class="nav-item nav-link" id="white"href="/menudb/deletechinese">Delete Item</a>
+  
+  <br>
+
+  <img src="{{ url_for('static',filename='assets/img/Chinese1.jpg')}}"  width="200"  height="150" style="margin: 50px 50px 50px 50px;">     
+  <img src="{{ url_for('static',filename='assets/img/Chinese2.jpg')}}"  width="200"  height="150" style="margin: 50px 50px 50px 50px;"> 
+  <img src="{{ url_for('static',filename='assets/img/Chinese3.jpg')}}" width="200"  height="150" style="margin: 50px 50px 50px 50px;"> 
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th style=color:white;>Item No.</th>
+        <th style=color:white;>Item Name</th>
+        <th style=color:white;>Item Code</th>
+        <th style=color:white;>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td style=color:white;>{{item[0]|round|int}}</td>
+            <td style=color:white;>{{item[1]}}</td>
+            <td style=color:white;>{{item[2]}}</td>
+            <td style=color:white;>Rs.{{item[3]}}/-</td>
+        </tr>
+        {% endfor %}   
+    </tbody>
+  </table>
+</div>
+{% endblock %}
